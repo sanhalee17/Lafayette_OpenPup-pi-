@@ -6,6 +6,7 @@ import Adafruit_PCA9685
 from numpy import *
 from math import *
 import time
+import numpy as np
 
 # INVERSE KINEMATICS: 2-D
 
@@ -64,7 +65,7 @@ angt4 = zeros(len(t))
 for i in range(0,len(t)):
 	x1[i] = x_center + x_stride*sin(leg_pace*t[i] - pi/2 - leg1_offset)
 	z1[i] = z_center + z_lift*sin(leg_pace*t[i] - leg1_offset)
-
+	print(x1[i])
 	x2[i] = x_center + x_stride*sin(leg_pace*t[i] - pi/2 - leg2_offset)
 	z2[i] = z_center + z_lift*sin(leg_pace*t[i] - leg2_offset)
 
@@ -91,48 +92,48 @@ def getServoAng(x, z, lf, lt):
 	return Af,At
 
 
-	angf1[i], angt1[i] = int(getServoAng(x1[i], z1[i], lf, lt) * 2 * math.pi) / 1000
-	angf2[i], angt2[i] = int(getServoAng(x2[i], z2[i], lf, lt) * 2 * math.pi) / 1000
-	angf3[i], angt3[i] = int(getServoAng(x3[i], z3[i], lf, lt) * 2 * math.pi) / 1000
-	angf4[i], angt4[i] = int(getServoAng(x4[i], z4[i], lf, lt) * 2 * math.pi) / 1000
+	angf1[i], angt1[i] = getServoAng(x1[i], z1[i], lf, lt) 
+	angf2[i], angt2[i] = getServoAng(x2[i], z2[i], lf, lt) 
+	angf3[i], angt3[i] = getServoAng(x3[i], z3[i], lf, lt) 
+    angf4[i], angt4[i] = getServoAng(x4[i], z4[i], lf, lt)
 
 
-pwm = Adafruit_PCA9685.PCA9685()
+# pwm = Adafruit_PCA9685.PCA9685()
 
 	
 
-def set_servo_pulse(channel, pulse):
-	pulse_length = 1000000
-	pulse_length //=60
-	print('{0}us per bit' .format (pulse_length))
-	pulse *= 1000
-	pulse //= pulse_length
-	pwm.set_pwm(channel, 0, pulse)
+# def set_servo_pulse(channel, pulse):
+# 	pulse_length = 1000000
+# 	pulse_length //=60
+# 	print('{0}us per bit' .format (pulse_length))
+# 	pulse *= 1000
+# 	pulse //= pulse_length
+# 	pwm.set_pwm(channel, 0, pulse)
 
-pwm.set_pwm_freq(60)
+# pwm.set_pwm_freq(60)
 
-while True:
-	#pwm.set_pwm(3, 0, 376)
-	#pwm.set_pwm(6, 0, 376)
-	#pwm.set_pwm(9, 0, 376)
-	#pwm.set_pwm(0, 0, 376)
+# while True:
+# 	#pwm.set_pwm(3, 0, 376)
+# 	#pwm.set_pwm(6, 0, 376)
+# 	#pwm.set_pwm(9, 0, 376)
+# 	#pwm.set_pwm(0, 0, 376)
 
-	pwm.set_pwm(1, 0, angf1[i]) 
-	pwm.set_pwm(2, 0, angt1[i])
-	print('front left leg')
+# 	pwm.set_pwm(1, 0, angf1[i]) 
+# 	pwm.set_pwm(2, 0, angt1[i])
+# 	print('front left leg')
 
-	time.sleep(2)
-	pwm.set_pwm(4,0,angf2[i])
-	pwm.set_pwm(5,0,angt2[i])
-	print('front right leg')
+# 	time.sleep(2)
+# 	pwm.set_pwm(4,0,angf2[i])
+# 	pwm.set_pwm(5,0,angt2[i])
+# 	print('front right leg')
 
-	time.sleep(2)
-	pwm.set_pwm(7, 0, angf3[i])
-	pwm.set_pwm(8, 0, angt3[i])
-	print('back left leg')
+# 	time.sleep(2)
+# 	pwm.set_pwm(7, 0, angf3[i])
+# 	pwm.set_pwm(8, 0, angt3[i])
+# 	print('back left leg')
 
-	time.sleep(2)
-	pwm.set_pwm(10, 0, angf4[i])
-    pwm.set_pwm(11, 0, angt4[i])
+# 	time.sleep(2)
+# 	pwm.set_pwm(10, 0, angf4[i])
+#     pwm.set_pwm(11, 0, angt4[i])
 
 
