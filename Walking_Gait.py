@@ -103,6 +103,23 @@ def set_servo_pulse(channel, pulse):
 
 pwm.set_pwm_freq(60)
 
+#setting the servos to home position
+# pwm.set_pwm(0, 0, 500)
+# pwm.set_pwm(1, 0, 500)
+# pwm.set_pwm(2, 0, 500)
+# pwm.set_pwm(3, 0, 500)
+# pwm.set_pwm(4, 0, 500)
+# pwm.set_pwm(5, 0, 500)
+# pwm.set_pwm(6, 0, 500)
+# pwm.set_pwm(7, 0, 500)
+# pwm.set_pwm(8, 0, 500)
+# pwm.set_pwm(9, 0, 500)
+# pwm.set_pwm(10, 0, 500)
+# pwm.set_pwm(11, 0, 500)
+
+
+
+#calculating 2D IK angles
 
 for i in range(0,len(t)):
 	x1[i] = x_center + x_stride*sin(leg_pace*t[i] - pi/2 - leg1_offset)
@@ -117,49 +134,55 @@ for i in range(0,len(t)):
 	x4[i] = x_center + x_stride*sin(leg_pace*t[i] - pi/2 - leg4_offset)
 	z4[i] = z_center + z_lift*sin(leg_pace*t[i] - leg4_offset)
 
+
+#tibia and femur angles in radians
 	angf1[i], angt1[i] = getServoAng(x1[i], z1[i], lf, lt)
 	angf2[i], angt2[i] = getServoAng(x2[i], z2[i], lf, lt) 
 	angf3[i], angt3[i] = getServoAng(x3[i], z3[i], lf, lt) 
 	angf4[i], angt4[i] = getServoAng(x4[i], z4[i], lf, lt)
 
-	sangf1[i]=(1000*angf1[i])/(2*pi)
-	sangt1[i]=int((1000*angt1[i])/(2*pi))
-	sangf2[i]=int((1000*angf2[i])/(2*pi))
-	sangt2[i]=int((1000*angt2[i])/(2*pi))
-	sangf3[i]=int((1000*angf3[i])/(2*pi))
-	sangt3[i]=int((1000*angt3[i])/(2*pi))
-	sangf4[i]=int((1000*angf4[i])/(2*pi))
-	sangt4[i]=int((1000*angt4[i])/(2*pi))
 
+#converting the radians to servo angles
+	sangf1[i]=(1000*angf1[i])/(2*pi)
+	sangt1[i]=(1000*angt1[i])/(2*pi)
+	sangf2[i]=(1000*angf2[i])/(2*pi)
+	sangt2[i]=(1000*angt2[i])/(2*pi)
+	sangf3[i]=(1000*angf3[i])/(2*pi)
+	sangt3[i]=(1000*angt3[i])/(2*pi)
+	sangf4[i]=(1000*angf4[i])/(2*pi)
+	sangt4[i]=(1000*angt4[i])/(2*pi)
+
+
+#sending the servo angles to indivial servos 
 
 i=0
 while True:
 	pwm.set_pwm(0, 0, int(sangf1[i%len(sangf1)]))
 	i=i+1
 	time.sleep(0.05)
-# 	pwm.set_pwm(6, 0, 376)
-# 	pwm.set_pwm(9, 0, 376)
-# 	pwm.set_pwm(0, 0, 376)
 
-# 	pwm.set_pwm(1, 0, int(sangf1[i])) 
-# # 	pwm.set_pwm(2, 0, sangt1[i])
-# # 	print('front left leg')
+	
+	pwm.set_pwm(1, 0, int(sangt1[i%len(sangt1)]))
 
-# # 	time.sleep(2)
-# # 	pwm.set_pwm(4,0,sangf2[i])
-# # 	pwm.set_pwm(5,0,sangt2[i])
-# # 	print('front right leg')
 
-# # 	time.sleep(2)
-# # 	pwm.set_pwm(7, 0, sangf3[i])
-# # 	pwm.set_pwm(8, 0, sangt3[i])
-# # 	print('back left leg')
+	pwm.set_pwm(2, 0, int(sangf2[i%len(sangf2)]))
+	pwm.set_pwm(3, 0, int(sangt2[i%len(sangt2)]))
 
-# # 	time.sleep(2)
-# # 	pwm.set_pwm(10, 0, sangf4[i])
-# # 	pwm.set_pwm(11, 0, sangt4[i])
+	pwm.set_pwm(4, 0, int(sangf3[i%len(sangf3)])) 
+	pwm.set_pwm(5, 0, int(sangt3[i%len(sangt3)]))
+	pwm.set_pwm(6, 0, int(sangf4[i%len(sangf4)]))
+	pwm.set_pwm(7, 0, int(sangt4[i%len(sangt4)]))
+	
+	# time.sleep(2)
+	# pwm.set_pwm(7, 0, sangf3[i])
+	# pwm.set_pwm(8, 0, sangt3[i])
+	# print('back left leg')
 
-# # 	print(sangf1[i])
+	# time.sleep(2)
+	# pwm.set_pwm(10, 0, sangf4[i])
+	# pwm.set_pwm(11, 0, sangt4[i])a
+
+	# print(sangf1[i])
 # # 	#This vector is defined as 
 
 # # # function to solve for servo angles Af (femur) and At (tibia)
