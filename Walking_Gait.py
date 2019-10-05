@@ -93,6 +93,7 @@ def getServoAng(x, z, lf, lt):
 	
 
 	return Af,At
+
 def set_servo_pulse(channel, pulse):
 	pulse_length = 1000000
 	pulse_length //=60
@@ -100,8 +101,7 @@ def set_servo_pulse(channel, pulse):
 	pulse *= 1000
 	pulse //= pulse_length
 	pwm.set_pwm(channel, 0, pulse)
-
-pwm.set_pwm_freq(60)
+	pwm.set_pwm_freq(60)
 
 #setting the servos to home position
 # pwm.set_pwm(0, 0, 500)
@@ -157,21 +157,21 @@ for i in range(0,len(t)):
 
 i=0
 while True:
-	pwm.set_pwm(0, 0, int(sangf1[i%len(sangf1)]))
-	i=i+1
+	#pwm.set_pwm(0,0,int(sangf1[i]))
+	pwm.set_pwm(0, 0, 500-int(sangf1[i%len(sangf1)]))
 	time.sleep(0.05)
-
+	i=i+1
 	
-	pwm.set_pwm(1, 0, int(sangt1[i%len(sangt1)]))
+	pwm.set_pwm(1, 0, 500-int(sangt1[i%len(sangt1)]))
 
 
-	pwm.set_pwm(2, 0, int(sangf2[i%len(sangf2)]))
-	pwm.set_pwm(3, 0, int(sangt2[i%len(sangt2)]))
+	pwm.set_pwm(2, 0, 500-int(sangf2[i%len(sangf2)]))
+	pwm.set_pwm(3, 0, 500-int(sangt2[i%len(sangt2)]))
 
-	pwm.set_pwm(4, 0, int(sangf3[i%len(sangf3)])) 
-	pwm.set_pwm(5, 0, int(sangt3[i%len(sangt3)]))
-	pwm.set_pwm(6, 0, int(sangf4[i%len(sangf4)]))
-	pwm.set_pwm(7, 0, int(sangt4[i%len(sangt4)]))
+	pwm.set_pwm(4, 0, 500-int(sangf3[i%len(sangf3)])) 
+	pwm.set_pwm(5, 0, 500-int(sangt3[i%len(sangt3)]))
+	pwm.set_pwm(6, 0, 500-int(sangf4[i%len(sangf4)]))
+	pwm.set_pwm(7, 0, 500-int(sangt4[i%len(sangt4)]))
 	
 	# time.sleep(2)
 	# pwm.set_pwm(7, 0, sangf3[i])
