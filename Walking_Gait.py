@@ -71,7 +71,7 @@ sangf3 = zeros(len(t))
 sangt3 = zeros(len(t))
 
 sangf4 = zeros(len(t))
-sangt4 = zeros(len(t))
+sangt4 = zeros(len(t)) 
 
 
 
@@ -157,21 +157,27 @@ for i in range(0,len(t)):
 
 i=0
 while True:
-	#pwm.set_pwm(0,0,int(sangf1[i]))
-	pwm.set_pwm(0, 0, 500-int(sangf1[i%len(sangf1)]))
-	time.sleep(0.05)
+	#pwm.set_pwm(0, 0, 100)
+	pwm.set_pwm(0, 0, 500-int(sangt2[i%len(sangt2)])) #port zero : right front tibia
+	time.sleep(0.03)
 	i=i+1
 	
-	pwm.set_pwm(1, 0, 500-int(sangt1[i%len(sangt1)]))
+	pwm.set_pwm(1, 0, 600-int(sangf2[i%len(sangf2)])) #port 1: right front femur
+	pwm.set_pwm(2, 0, 500)                            #port 2: right hip
 
 
-	pwm.set_pwm(2, 0, 500-int(sangf2[i%len(sangf2)]))
-	pwm.set_pwm(3, 0, 500-int(sangt2[i%len(sangt2)]))
+	pwm.set_pwm(3, 0, 600-int(sangt1[i%len(sangt1)])) #port 3: left front tibia
+	pwm.set_pwm(4, 0, 500-int(sangf1[i%len(sangf1)])) #port 4: left front femur
+	pwm.set_pwm(5, 0, 500)                            #port 5: left hip
 
-	pwm.set_pwm(4, 0, 500-int(sangf3[i%len(sangf3)])) 
-	pwm.set_pwm(5, 0, 500-int(sangt3[i%len(sangt3)]))
-	pwm.set_pwm(6, 0, 500-int(sangf4[i%len(sangf4)]))
-	pwm.set_pwm(7, 0, 500-int(sangt4[i%len(sangt4)]))
+	pwm.set_pwm(8, 0, 500-int(sangf3[i%len(sangf3)])) #port 8: left back femur
+	pwm.set_pwm(9, 0, 600-int(sangt3[i%len(sangt3)])) #port 9: left back tibia
+	pwm.set_pwm(10, 0, 500)                            #port 10: left back hip
+	
+	pwm.set_pwm(6, 0, 500-int(sangf4[i%len(sangf4)])) #port 6: right back femur  
+	pwm.set_pwm(7, 0, 600-int(sangt4[i%len(sangt4)])) #port 7: right back tibia
+	pwm.set_pwm(11, 0, 500)                           #port 11: right back hip
+
 	
 	# time.sleep(2)
 	# pwm.set_pwm(7, 0, sangf3[i])
