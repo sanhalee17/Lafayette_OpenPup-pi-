@@ -158,8 +158,8 @@ for i in range(0,len(t)):
 i=0
 while True:
 	#pwm.set_pwm(0, 0, 100)
-	pwm.set_pwm(0, 0, 500-int(sangt2[i%len(sangt2)])) #port zero : right front tibia
-	time.sleep(0.03)
+	pwm.set_pwm(0, 0, 600-int(sangt2[i%len(sangt2)])) #port zero : right front tibia
+	time.sleep(0.01)
 	i=i+1
 	
 	pwm.set_pwm(1, 0, 600-int(sangf2[i%len(sangf2)])) #port 1: right front femur
