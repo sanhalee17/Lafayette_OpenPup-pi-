@@ -43,21 +43,25 @@ t = linspace(0,gait_duration,1000)
 
 x1 = zeros(len(t))
 z1 = zeros(len(t))
+zf1 = zeros(len(t))
 angf1 = zeros(len(t))
 angt1 = zeros(len(t))
 
 x2 = zeros(len(t))
 z2 = zeros(len(t))
+zf2 = zeros(len(t))
 angf2 = zeros(len(t))
 angt2 = zeros(len(t))
 
 x3 = zeros(len(t))
 z3 = zeros(len(t))
+zf3 = zeros(len(t))
 angf3 = zeros(len(t))
 angt3 = zeros(len(t))
 
 x4 = zeros(len(t))
 z4 = zeros(len(t))
+zf4 = zeros(len(t))
 angf4 = zeros(len(t))
 angt4 = zeros(len(t))
 
@@ -122,17 +126,37 @@ def set_servo_pulse(channel, pulse):
 #calculating 2D IK angles
 
 for i in range(0,len(t)):
+	zf1[i] = z_lift*sin(leg_pace*t[i] - leg1_offset)
+	
 	x1[i] = x_center + x_stride*sin(leg_pace*t[i] - pi/2 - leg1_offset)
-	z1[i] = z_center + z_lift*sin(leg_pace*t[i] - leg1_offset)
+	if zf1[i]>=0:
+	   z1[i] = z_center + z_lift*sin(leg_pace*t[i] - leg1_offset-pi/2)
+	else:
+	   z1[i] = z_center
+	#z1[i] = z_center + z_lift*sin(leg_pace*t[i] - leg1_offset)
 	#print(x1[i])
+
+	zf2[i] = z_lift*sin(leg_pace*t[i] - leg2_offset)
 	x2[i] = x_center + x_stride*sin(leg_pace*t[i] - pi/2 - leg2_offset)
-	z2[i] = z_center + z_lift*sin(leg_pace*t[i] - leg2_offset)
+	if zf2[i]>0:
+		z2[i] = z_center + z_lift*sin(leg_pace*t[i] - leg2_offset-pi/2)
+	else:
+		z2[i] = z_center
 
+	zf3[i] = z_lift*sin(leg_pace*t[i] - leg3_offset)
 	x3[i] = x_center + x_stride*sin(leg_pace*t[i] - pi/2 - leg3_offset)
-	z3[i] = z_center + z_lift*sin(leg_pace*t[i] - leg3_offset)
+	if zf3[i]>0:
+		z3[i] = z_center + z_lift*sin(leg_pace*t[i] - leg3_offset-pi/2)
+	else:
+		z3[i] = z_center
 
+	zf4[i] = z_lift*sin(leg_pace*t[i] - leg4_offset)
+	
 	x4[i] = x_center + x_stride*sin(leg_pace*t[i] - pi/2 - leg4_offset)
-	z4[i] = z_center + z_lift*sin(leg_pace*t[i] - leg4_offset)
+	if zf4[i] >0:
+		z4[i] = z_center + z_lift*sin(leg_pace*t[i] - leg4_offset)
+	else:
+		z4[i] = z_center
 
 
 #tibia and femur angles in radians
