@@ -30,10 +30,10 @@ x_stride = 1.5
 z_center = -3.5
 z_lift = 0.5
 
-leg1_offset = pi/4		# front left
-leg2_offset = 5*pi/4	# front right
+leg1_offset = 0#pi/4		# front left
+leg2_offset = 0 #5*pi/4	# front right
 leg3_offset = 0			# back left
-leg4_offset = pi 		# back right
+leg4_offset = 0#pi 		# back right
 
 
 # initialize: x and z positions for each foot & femur and tibia angles for each leg
@@ -105,7 +105,7 @@ def set_servo_pulse(channel, pulse):
 	pulse *= 1000
 	pulse //= pulse_length
 	pwm.set_pwm(channel, 0, pulse)
-	pwm.set_pwm_freq(60)
+	pwm.set_pwm_freq(100)
 
 #setting the servos to home position
 # pwm.set_pwm(0, 0, 500)
@@ -126,7 +126,7 @@ def set_servo_pulse(channel, pulse):
 #calculating 2D IK angles
 
 for i in range(0,len(t)):
-	zf1[i] = z_lift*sin(leg_pace*t[i] - leg1_offset)
+	zf1[i] = z_lift*sin(leg_pace*t[i] - leg1_offset-pi/2)
 	
 	x1[i] = x_center + x_stride*sin(leg_pace*t[i]  - leg1_offset)
 	if zf1[i]>=0:
@@ -136,24 +136,24 @@ for i in range(0,len(t)):
 	#z1[i] = z_center + z_lift*sin(leg_pace*t[i] - leg1_offset)
 	#print(x1[i])
 
-	zf2[i] = z_lift*sin(leg_pace*t[i] - leg2_offset)
+	zf2[i] = z_lift*sin(leg_pace*t[i] - leg2_offset-pi/2)
 	x2[i] = x_center + x_stride*sin(leg_pace*t[i]  - leg2_offset)
-	if zf2[i]>0:
+	if zf2[i]>=0:
 		z2[i] = z_center + z_lift*sin(leg_pace*t[i] - leg2_offset-pi/2)
 	else:
 		z2[i] = z_center
 
-	zf3[i] = z_lift*sin(leg_pace*t[i] - leg3_offset)
+	zf3[i] = z_lift*sin(leg_pace*t[i] - leg3_offset-pi/2)
 	x3[i] = x_center + x_stride*sin(leg_pace*t[i]  - leg3_offset)
-	if zf3[i]>0:
+	if zf3[i]>=0:
 		z3[i] = z_center + z_lift*sin(leg_pace*t[i] - leg3_offset-pi/2)
 	else:
 		z3[i] = z_center
 
-	zf4[i] = z_lift*sin(leg_pace*t[i] - leg4_offset)
+	zf4[i] = z_lift*sin(leg_pace*t[i] - leg4_offset-pi/2)
 	
 	x4[i] = x_center + x_stride*sin(leg_pace*t[i]  - leg4_offset)
-	if zf4[i] >0:
+	if zf4[i] >=0:
 		z4[i] = z_center + z_lift*sin(leg_pace*t[i] - leg4_offset)
 	else:
 		z4[i] = z_center
@@ -170,12 +170,12 @@ for i in range(0,len(t)):
 	sangf1[i]=(900*angf1[i])/(2*pi)
 	print(sangf1[i])
 	sangt1[i]=(900*angt1[i])/(2*pi)
-	sangf2[i]=1050-(900*angf2[i])/(2*pi)
-	sangt2[i]=1050-(900*angt2[i])/(2*pi)
+	sangf2[i]=(900*angf2[i])/(2*pi)
+	sangt2[i]=(900*angt2[i])/(2*pi)
 	sangf3[i]=(900*angf3[i])/(2*pi)
 	sangt3[i]=(900*angt3[i])/(2*pi)
-	sangf4[i]=1050-(900*angf4[i])/(2*pi)
-	sangt4[i]=1050-(900*angt4[i])/(2*pi)
+	sangf4[i]=(900*angf4[i])/(2*pi)
+	sangt4[i]=(900*angt4[i])/(2*pi)
 
 
 #sending the servo angles to indivial servos 
@@ -187,20 +187,20 @@ while True:
 	time.sleep(0.001)
 	i=i+1
 	
-	pwm.set_pwm(1, 0, int(sangf2[i%len(sangf2)])) #port 1: right front femur
+	pwm.set_pwm(1, 0, 170+int(sangf2[i%len(sangf2)])) #port 1: right front femur
 	pwm.set_pwm(2, 0, 500)                            #port 2: right hip
 
 
 	pwm.set_pwm(3, 0, 170+int(sangt1[i%len(sangt1)])) #port 3: left front tibia
 	pwm.set_pwm(4, 0, 170+int(sangf1[i%len(sangf1)])) #port 4: left front femur
-	print(int(sangf4[i%len(sangf4)]))
+	print(int(sangt3[i%len(sangt3)]), int(sangf3[i%len(sangf3)]), zf1[i])
 	pwm.set_pwm(5, 0, 500)                            #port 5: left hip
 
 	pwm.set_pwm(8, 0, 170+int(sangf3[i%len(sangf3)])) #port 8: left back femur
 	pwm.set_pwm(9, 0, 170+int(sangt3[i%len(sangt3)])) #port 9: left back tibia
 	pwm.set_pwm(10, 0, 500)                            #port 10: left back hip
 	
-	pwm.set_pwm(12, 0, 170+int(sangf4[i%len(sangf4)])) #port 6: right back femur  
+	pwm.set_pwm(6, 0, 170+int(sangf4[i%len(sangf4)])) #port 6: right back femur  
 	pwm.set_pwm(7, 0, 170+int(sangt4[i%len(sangt4)])) #port 7: right back tibia
 	pwm.set_pwm(11, 0, 500)                           #port 11: right back hip
 
