@@ -28,12 +28,12 @@ x_center = -0.5
 x_stride = 1.5
 
 z_center = -3.5
-z_lift = 0.5
+z_lift = 0.7
 
-leg1_offset = 0#pi/4		# front left
-leg2_offset = 0 #5*pi/4	# front right
+leg1_offset = pi/4		# front left
+leg2_offset = 5*pi/4	# front right
 leg3_offset = 0			# back left
-leg4_offset = 0#pi 		# back right
+leg4_offset = pi 		# back right
 
 
 # initialize: x and z positions for each foot & femur and tibia angles for each leg
@@ -76,6 +76,11 @@ sangt3 = zeros(len(t))
 
 sangf4 = zeros(len(t))
 sangt4 = zeros(len(t)) 
+
+qangf2 = zeros(len(t)) 
+qangt2 = zeros(len(t)) 
+qangf4 = zeros(len(t)) 
+qangt4 = zeros(len(t)) 
 
 
 
@@ -161,9 +166,15 @@ for i in range(0,len(t)):
 
 #tibia and femur angles in radians
 	angf1[i], angt1[i] = getServoAng(x1[i], z1[i], lf, lt)
-	angf2[i], angt2[i] = getServoAng(x2[i], z2[i], lf, lt) 
+	qangf2[i], qangt2[i] = getServoAng(x2[i], z2[i], lf, lt) 
 	angf3[i], angt3[i] = getServoAng(x3[i], z3[i], lf, lt) 
-	angf4[i], angt4[i] = getServoAng(x4[i], z4[i], lf, lt)
+	qangf4[i], qangt4[i] = getServoAng(x4[i], z4[i], lf, lt)
+
+	angf2[i] = 2 * pi - qangf2[i]
+	angt2[i] = 2 * pi - qangt2[i]
+	angf4[i] = 2 * pi - qangf4[i]
+	angt4[i] = 2 * pi - qangt4[i]
+
 
 
 #converting the radians to servo angles
@@ -182,26 +193,24 @@ for i in range(0,len(t)):
 
 i=0
 while True:
-	#pwm.set_pwm(0, 0, 100)
-	pwm.set_pwm(0, 0, 170+int(sangt2[i%len(sangt2)])) #port zero : right front tibia
-	time.sleep(0.001)
+	pwm.set_pwm(0, 0, int(sangt2[i%len(sangt2)])-48) #port zero : right front tibia
 	i=i+1
 	
-	pwm.set_pwm(1, 0, 170+int(sangf2[i%len(sangf2)])) #port 1: right front femur
+	pwm.set_pwm(1, 0, int(sangf2[i%len(sangf2)])-200) #port 1: right front femur
 	pwm.set_pwm(2, 0, 500)                            #port 2: right hip
 
 
-	pwm.set_pwm(3, 0, 170+int(sangt1[i%len(sangt1)])) #port 3: left front tibia
-	pwm.set_pwm(4, 0, 170+int(sangf1[i%len(sangf1)])) #port 4: left front femur
-	print(int(sangt3[i%len(sangt3)]), int(sangf3[i%len(sangf3)]), zf1[i])
+	pwm.set_pwm(3, 0, (610-241)+int(sangt1[i%len(sangt1)])) 
+	pwm.set_pwm(4, 0, (610-89) +int(sangf1[1])+int(sangf1[i%len(sangf1)])) 
+	
 	pwm.set_pwm(5, 0, 500)                            #port 5: left hip
 
-	pwm.set_pwm(8, 0, 170+int(sangf3[i%len(sangf3)])) #port 8: left back femur
-	pwm.set_pwm(9, 0, 170+int(sangt3[i%len(sangt3)])) #port 9: left back tibia
+	pwm.set_pwm(8, 0, (610-89)+int(sangf3[i%len(sangf3)])) #port 8: left back femur
+	pwm.set_pwm(9, 0, (610-241)+int(sangt3[i%len(sangt3)])) #port 9: left back tibia
 	pwm.set_pwm(10, 0, 500)                            #port 10: left back hip
 	
-	pwm.set_pwm(6, 0, 170+int(sangf4[i%len(sangf4)])) #port 6: right back femur  
-	pwm.set_pwm(7, 0, 170+int(sangt4[i%len(sangt4)])) #port 7: right back tibia
+	#pwm.set_pwm(6, 0, int(sangf4[i%len(sangf4)])-200) #port 6: right back femur  
+	pwm.set_pwm(7, 0, int(sangt4[i%len(sangt4)])-48) #port 7: right back tibia
 	pwm.set_pwm(11, 0, 500)                           #port 11: right back hip
 
 	
