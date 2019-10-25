@@ -25,7 +25,8 @@ gait_duration = 2 # seconds
 leg_pace = 100 # pace of gait
 
 x_center = -2.3
-x_stride = -0.5
+x_stride_left = -0.5
+x_stride_rigt = -0.4
 
 z_center = -4
 z_lift = 0.7
@@ -133,23 +134,23 @@ def set_servo_pulse(channel, pulse):
 for i in range(0,len(t)):
 	zf1[i] = z_lift*sin(leg_pace*t[i] - leg1_offset-pi/2) #actual z lifting distance
 
-	x1[i] = x_center + x_stride*sin(leg_pace*t[i]  - leg1_offset)
+	x1[i] = x_center + x_stride_left*sin(leg_pace*t[i]  - leg1_offset)
 	if zf1[i]>0:                                                 
-	   z1[i] = z_center + z_lift*sin(leg_pace*t[i] - leg1_offset-pi/2) #when the foot is off the ground, the foot goes to the desired height
+	   z1[i] = z_center + (z_lift+0.2)*sin(leg_pace*t[i] - leg1_offset-pi/2) #when the foot is off the ground, the foot goes to the desired height
 	else:
 	   z1[i] = z_center #if the foot is on the ground, z does not go up.
 	#z1[i] = z_center + z_lift*sin(leg_pace*t[i] - leg1_offset)
 	#print(x1[i])
 
 	zf2[i] = z_lift*sin(leg_pace*t[i] - leg2_offset-pi/2)
-	x2[i] = x_center + x_stride*sin(leg_pace*t[i]  - leg2_offset)
+	x2[i] = x_center + x_stride_rigt*sin(leg_pace*t[i]  - leg2_offset)
 	if zf2[i]>0:
-		z2[i] = z_center + z_lift*sin(leg_pace*t[i] - leg2_offset-pi/2)
+		z2[i] = z_center + (z_lift+0.2)*sin(leg_pace*t[i] - leg2_offset-pi/2)
 	else:
 		z2[i] = z_center
 
 	zf3[i] = z_lift*sin(leg_pace*t[i] - leg3_offset-pi/2)
-	x3[i] = x_center + x_stride*sin(leg_pace*t[i]  - leg3_offset)
+	x3[i] = x_center + x_stride_left*sin(leg_pace*t[i]  - leg3_offset)
 	if zf3[i]>0:
 		z3[i] = z_center + z_lift*sin(leg_pace*t[i] - leg3_offset-pi/2)
 	else:
@@ -157,7 +158,7 @@ for i in range(0,len(t)):
 
 	zf4[i] = z_lift*sin(leg_pace*t[i] - leg4_offset-pi/2)
 	
-	x4[i] = x_center + x_stride*sin(leg_pace*t[i]  - leg4_offset)
+	x4[i] = x_center + x_stride_rigt*sin(leg_pace*t[i]  - leg4_offset)
 	if zf4[i] >0:
 		z4[i] = z_center + z_lift*sin(leg_pace*t[i] - leg4_offset-pi/2)
 	else:

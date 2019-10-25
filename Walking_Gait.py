@@ -8,6 +8,7 @@ from math import *
 import time
 import numpy as np
 
+
 # INVERSE KINEMATICS: 2-D
 
 # robot dimensions
@@ -25,7 +26,8 @@ gait_duration = 2 # seconds
 leg_pace = 100 # pace of gait
 
 x_center = -2.7
-x_stride = -0.5
+x_stride_left = -0.5
+x_stride_right = -0.6
 
 z_center = -4
 z_lift = 0.7
@@ -112,44 +114,28 @@ def set_servo_pulse(channel, pulse):
 	pwm.set_pwm(channel, 0, pulse)
 	pwm.set_pwm_freq(100)
 
-#setting the servos to home position
-# pwm.set_pwm(0, 0, 500)
-# pwm.set_pwm(1, 0, 500)
-# pwm.set_pwm(2, 0, 500)
-# pwm.set_pwm(3, 0, 500)
-# pwm.set_pwm(4, 0, 500)
-# pwm.set_pwm(5, 0, 500)
-# pwm.set_pwm(6, 0, 500)
-# pwm.set_pwm(7, 0, 500)
-# pwm.set_pwm(8, 0, 500)
-# pwm.set_pwm(9, 0, 500)
-# pwm.set_pwm(10, 0, 500)
-# pwm.set_pwm(11, 0, 500)
-
-
-
 #calculating 2D IK angles
 
 for i in range(0,len(t)):
 	zf1[i] = z_lift*sin(leg_pace*t[i] - leg1_offset-pi/2)
 	
-	x1[i] = x_center + x_stride*sin(leg_pace*t[i]  - leg1_offset)
+	x1[i] = x_center + x_stride_left*sin(leg_pace*t[i]  - leg1_offset)
 	if zf1[i]>=0:
-	   z1[i] = z_center + z_lift*sin(leg_pace*t[i] - leg1_offset-pi/2)
+	   z1[i] = z_center + (z_lift+0.2)*sin(leg_pace*t[i] - leg1_offset-pi/2)
 	else:
 	   z1[i] = z_center
 	#z1[i] = z_center + z_lift*sin(leg_pace*t[i] - leg1_offset)
 	#print(x1[i])
 
 	zf2[i] = z_lift*sin(leg_pace*t[i] - leg2_offset-pi/2)
-	x2[i] = x_center + x_stride*sin(leg_pace*t[i]  - leg2_offset)
+	x2[i] = x_center + x_stride_right*sin(leg_pace*t[i]  - leg2_offset)
 	if zf2[i]>=0:
-		z2[i] = z_center + z_lift*sin(leg_pace*t[i] - leg2_offset-pi/2)
+		z2[i] = z_center + (z_lift+0.2)*sin(leg_pace*t[i] - leg2_offset-pi/2)
 	else:
 		z2[i] = z_center
 
 	zf3[i] = z_lift*sin(leg_pace*t[i] - leg3_offset-pi/2)
-	x3[i] = x_center + x_stride*sin(leg_pace*t[i]  - leg3_offset)
+	x3[i] = x_center + x_stride_left*sin(leg_pace*t[i]  - leg3_offset)
 	if zf3[i]>=0:
 		z3[i] = z_center + z_lift*sin(leg_pace*t[i] - leg3_offset-pi/2)
 	else:
@@ -157,7 +143,7 @@ for i in range(0,len(t)):
 
 	zf4[i] = z_lift*sin(leg_pace*t[i] - leg4_offset-pi/2)
 	
-	x4[i] = x_center + x_stride*sin(leg_pace*t[i]  - leg4_offset)
+	x4[i] = x_center + x_stride_right*sin(leg_pace*t[i]  - leg4_offset)
 	if zf4[i] >=0:
 		z4[i] = z_center + z_lift*sin(leg_pace*t[i] - leg4_offset-pi/2)
 	else:
@@ -176,7 +162,7 @@ for i in range(0,len(t)):
 	angt4[i] = pi - qangt4[i]
 
 
-
+	print(str(angt1[i])+", "+ str(angf1[i])+", "+str(angt2[i])+", "+str(angf2[i])+", "+str(angt3[i])+", "+str(angf3[i])+", "+str(angt4[i])+", "+str(angf4[i]))
 
 
 #converting the radians to servo angles
@@ -190,7 +176,7 @@ for i in range(0,len(t)):
 	sangf4[i]=(900*angf4[i])/(pi)
 	sangt4[i]=(900*angt4[i])/(pi)
 
-	print(sangt4[i], sangt2[i])
+
 
 
 #sending the servo angles to indivial servos 
@@ -201,7 +187,7 @@ while True:
 	i=i+1
 	
 	pwm.set_pwm(1, 0, int(sangf2[i%len(sangf2)])-200) #port 1: right front femur
-	pwm.set_pwm(2, 0, 500)                            #port 2: right hip
+	pwm.set_pwm(2, 0, 500)                             #port 2: right hip
 
 
 	pwm.set_pwm(3, 0, (610-241)+int(sangt1[i%len(sangt1)])) 
@@ -215,8 +201,8 @@ while True:
 	
 	pwm.set_pwm(12, 0, int(sangf4[i%len(sangf4)])-200) #port 6: right back femur  
 	pwm.set_pwm(7, 0, int(sangt4[i%len(sangt4)])-48) #port 7: right back tibia
-	pwm.set_pwm(11, 0, 500)                           #port 11: right back hip
-
+	pwm.set_pwm(11, 0, 500)                           #port 11: right back hip 
+	#print(str(time.time())+", "+str((610-241)+int(sangt1[i%len(sangt1)]))+", "+ str((610-89) + int(sangf1[1])+int(sangf1[i%len(sangf1)]))+", "+	str(int(sangt2[i%len(sangt2)])-48) +", "+ str(int(sangf2[i%len(sangf2)])-200) +", "+ str((610-241)+int(sangt3[i%len(sangt3)]))+", "+ str((610-89)+int(sangf3[i%len(sangf3)]))+", "+ str(int(sangt4[i%len(sangt4)])-48)+", "+ str(int(sangf4[i%len(sangf4)])-200))
 	
 	# time.sleep(2)
 	# pwm.set_pwm(7, 0, sangf3[i])
