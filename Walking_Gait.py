@@ -27,7 +27,7 @@ leg_pace = 100 # pace of gait
 
 x_center = -2.7
 x_stride_left = -0.5
-x_stride_right = -0.6
+x_stride_right = -0.5
 
 z_center = -4
 z_lift = 0.7
@@ -121,7 +121,7 @@ for i in range(0,len(t)):
 	
 	x1[i] = x_center + x_stride_left*sin(leg_pace*t[i]  - leg1_offset)
 	if zf1[i]>=0:
-	   z1[i] = z_center + (z_lift+0.2)*sin(leg_pace*t[i] - leg1_offset-pi/2)
+	   z1[i] = z_center + (z_lift)*sin(leg_pace*t[i] - leg1_offset-pi/2)
 	else:
 	   z1[i] = z_center
 	#z1[i] = z_center + z_lift*sin(leg_pace*t[i] - leg1_offset)
@@ -130,7 +130,7 @@ for i in range(0,len(t)):
 	zf2[i] = z_lift*sin(leg_pace*t[i] - leg2_offset-pi/2)
 	x2[i] = x_center + x_stride_right*sin(leg_pace*t[i]  - leg2_offset)
 	if zf2[i]>=0:
-		z2[i] = z_center + (z_lift+0.2)*sin(leg_pace*t[i] - leg2_offset-pi/2)
+		z2[i] = z_center + (z_lift)*sin(leg_pace*t[i] - leg2_offset-pi/2)
 	else:
 		z2[i] = z_center
 
@@ -162,7 +162,7 @@ for i in range(0,len(t)):
 	angt4[i] = pi - qangt4[i]
 
 
-	print(str(angt1[i])+", "+ str(angf1[i])+", "+str(angt2[i])+", "+str(angf2[i])+", "+str(angt3[i])+", "+str(angf3[i])+", "+str(angt4[i])+", "+str(angf4[i]))
+	#print(str(angt1[i])+", "+ str(angf1[i])+", "+str(angt2[i])+", "+str(angf2[i])+", "+str(angt3[i])+", "+str(angf3[i])+", "+str(angt4[i])+", "+str(angf4[i]))
 
 
 #converting the radians to servo angles
@@ -191,7 +191,7 @@ while True:
 
 
 	pwm.set_pwm(3, 0, (610-241)+int(sangt1[i%len(sangt1)])) 
-	pwm.set_pwm(4, 0, (610-89) +int(sangf1[1])+int(sangf1[i%len(sangf1)])) 
+	pwm.set_pwm(4, 0, (610-89) +int(sangf1[i%len(sangf1)])) 
 	
 	pwm.set_pwm(5, 0, 500)                            #port 5: left hip
 
