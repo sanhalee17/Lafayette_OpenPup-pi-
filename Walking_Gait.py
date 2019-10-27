@@ -26,7 +26,7 @@ gait_duration = 2 # seconds
 leg_pace = 100 # pace of gait
 
 x_center = -2         #center of gravity
-x_stride_left = -0.5
+x_stride_left = 0.5
 x_stride_right = -0.5
 
 z_center = -4
@@ -190,8 +190,8 @@ while True:
 	pwm.set_pwm(2, 0, 500)                             #port 2: right hip
 
 
-	pwm.set_pwm(3, 0, (610-315)+int(sangt1[i%len(sangt1)])) 
-	pwm.set_pwm(4, 0, (610-157) +int(sangf1[i%len(sangf1)])) 
+	pwm.set_pwm(3, 0, ((610-315)+int(sangt1[i%len(sangt1)])) 
+	pwm.set_pwm(4, 0, ((610-157) +int(sangf1[i%len(sangf1)])) 
 	
 	pwm.set_pwm(5, 0, 500)                            #port 5: left hip
 
