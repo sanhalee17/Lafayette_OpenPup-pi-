@@ -25,7 +25,7 @@ ls = 5.00 # spine, inches
 gait_duration = 2 # seconds
 leg_pace = 100 # pace of gait
 
-x_center = -2.7
+x_center = -2         #center of gravity
 x_stride_left = -0.5
 x_stride_right = -0.5
 
@@ -183,40 +183,26 @@ for i in range(0,len(t)):
 
 i=0
 while True:
-	pwm.set_pwm(0, 0, int(sangt2[i%len(sangt2)])-48) #port zero : right front tibia
+	pwm.set_pwm(0, 0, (610-461)+int(sangt2[i%len(sangt2)])) #port zero : right front tibia
 	i=i+1
 	
-	pwm.set_pwm(1, 0, int(sangf2[i%len(sangf2)])-200) #port 1: right front femur
+	pwm.set_pwm(1, 0, (-813+610)+int(sangf2[i%len(sangf2)])) #port 1: right front femur
 	pwm.set_pwm(2, 0, 500)                             #port 2: right hip
 
 
-	pwm.set_pwm(3, 0, (610-241)+int(sangt1[i%len(sangt1)])) 
-	pwm.set_pwm(4, 0, (610-89) +int(sangf1[i%len(sangf1)])) 
+	pwm.set_pwm(3, 0, (610-315)+int(sangt1[i%len(sangt1)])) 
+	pwm.set_pwm(4, 0, (610-157) +int(sangf1[i%len(sangf1)])) 
 	
 	pwm.set_pwm(5, 0, 500)                            #port 5: left hip
 
-	pwm.set_pwm(8, 0, (610-89)+int(sangf3[i%len(sangf3)])) #port 8: left back femur
-	pwm.set_pwm(9, 0, (610-241)+int(sangt3[i%len(sangt3)])) #port 9: left back tibia
+	pwm.set_pwm(8, 0, (610-86)+int(sangf3[i%len(sangf3)])) #port 8: left back femur
+	pwm.set_pwm(9, 0, (610-438)+int(sangt3[i%len(sangt3)])) #port 9: left back tibia
 	pwm.set_pwm(10, 0, 500)                            #port 10: left back hip
 	
-	pwm.set_pwm(12, 0, int(sangf4[i%len(sangf4)])-200) #port 6: right back femur  
-	pwm.set_pwm(7, 0, int(sangt4[i%len(sangt4)])-48) #port 7: right back tibia
-	pwm.set_pwm(11, 0, 500)                           #port 11: right back hip 
-	#print(str(time.time())+", "+str((610-241)+int(sangt1[i%len(sangt1)]))+", "+ str((610-89) + int(sangf1[1])+int(sangf1[i%len(sangf1)]))+", "+	str(int(sangt2[i%len(sangt2)])-48) +", "+ str(int(sangf2[i%len(sangf2)])-200) +", "+ str((610-241)+int(sangt3[i%len(sangt3)]))+", "+ str((610-89)+int(sangf3[i%len(sangf3)]))+", "+ str(int(sangt4[i%len(sangt4)])-48)+", "+ str(int(sangf4[i%len(sangf4)])-200))
-	
-	# time.sleep(2)
-	# pwm.set_pwm(7, 0, sangf3[i])
-	# pwm.set_pwm(8, 0, sangt3[i])
-	# print('back left leg')
-
-	# time.sleep(2)
-	# pwm.set_pwm(10, 0, sangf4[i])
-	# pwm.set_pwm(11, 0, sangt4[i])a
-
-	# print(sangf1[i])
-# # 	#This vector is defined as 
-
-# # # function to solve for servo angles Af (femur) and At (tibia)
+	pwm.set_pwm(12, 0, (-742+610)+int(sangf4[i%len(sangf4)])) #port 6: right back femur  
+	pwm.set_pwm(7, 0, (610-584)+int(sangt4[i%len(sangt4)])) #port 7: right back tibia
+	pwm.set_pwm(13, 0, 500)                           #port 11: right back hip                            #port 11: right back hip 
+	print(str(time.time())+", "+str((610-315)+int(sangt1[i%len(sangt1)]))+", "+ str((610-157) +int(sangf1[i%len(sangf1)]))+", "+	str((610-461)+int(sangt2[i%len(sangt2)])) +", "+ str((-813+610)+int(sangf2[i%len(sangf2)])) +", "+ str((610-438)+int(sangt3[i%len(sangt3)]))+", "+ str((610-86)+int(sangf3[i%len(sangf3)]))+", "+ str((610-584)+int(sangt4[i%len(sangt4)]))+", "+ str((-742+610)+int(sangf4[i%len(sangf4)])))
 
 
 
