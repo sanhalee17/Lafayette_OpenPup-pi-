@@ -18,7 +18,7 @@ afem_2 = 180-radangle(:,4);
 atib_3 = radangle(:,5);
 afem_3 = radangle(:,6);
 atib_4 = 180-radangle(:,7);
-afem_4 = 180-radangle(:,8);
+afeb_4 = 180-radangle(:,8);
 
 
 time1  = servodata(:,1);
@@ -34,20 +34,14 @@ femur_4 = servodata(:,9)*(180/900);
 
  
 figure(1)
-subplot(2,2,1)
+subplot(2,1,1)
 plot(atime, afem_1, 'r', atime, afem_2, 'b')
 legend ('femur 1', 'femur 2')
 grid on
 
-subplot(2,2,2)
+subplot(2,1,2)
 plot(atime, atib_1, 'r', atime, atib_2, 'b')
 legend ('tibia 1', 'tibia 2')
 grid on
 
-subplot(2,2,3)
-plot(atime, afem_3, 'r', atime, afem_4, 'b')
-legend ('femur3', 'femur 4')
-
-subplot(2,2,4)
-plot(atime, atib_3, 'r', atime, atib_4, 'b')
-legend ('tibia 3', 'tibia 4')
+subplot(2,1,

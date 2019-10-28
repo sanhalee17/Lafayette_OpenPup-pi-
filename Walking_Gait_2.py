@@ -216,20 +216,6 @@ while True:
 	pwm.set_pwm(7, 0, int(sangt4[i%len(sangt4)])-48) #port 7: right back tibia
 	pwm.set_pwm(11, 0, 500)                           #port 11: right back hip
 
-	
-	# time.sleep(2)
-	# pwm.set_pwm(7, 0, sangf3[i])
-	# pwm.set_pwm(8, 0, sangt3[i])
-	# print('back left leg')
-
-	# time.sleep(2)
-	# pwm.set_pwm(10, 0, sangf4[i])
-	# pwm.set_pwm(11, 0, sangt4[i])a
-
-	# print(sangf1[i])
-# # 	#This vector is defined as 
-
-# # # function to solve for servo angles Af (femur) and At (tibia)
 
 
 
