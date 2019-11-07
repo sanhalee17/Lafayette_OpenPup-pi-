@@ -390,7 +390,7 @@ for i in range(0,len(t)):
 
 #angle offset values
 tib1_offset = 1800
-fem1_offset = 1800
+fem1_offset = 1750
 sh1_offset = 2000
 
 tib2_offset = 300
