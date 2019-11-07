@@ -432,8 +432,8 @@ while True:
 		pwm.set_pwm(9, 0, tib3_offset-760)
  		#pwm.set_pwm(10, 0, sh3_offset)
 
-		pwm.set_pwm(12, 0, fem4_offset+760)
-		pwm.set_pwm(7, 0, tib4_offset+760)
+		pwm.set_pwm(12, 0, fem4_offset)#+760)
+		pwm.set_pwm(7, 0, tib4_offset)#+760)
 		#pwm.set_pwm(13, 0, sh4_offset)
 
 
