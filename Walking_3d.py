@@ -95,8 +95,8 @@ elif (action == "sideways"):
 
 	leg1_offset = 0			# front left
 	leg2_offset = pi		# front right
-	leg3_offset = 0			# back left
-	leg4_offset = pi 		# back right
+	leg3_offset = pi/2			# back left
+	leg4_offset = 3*pi/2 		# back right
 
 
 # initialize: x, y, and z positions for each foot & femur and tibia angles for each leg
