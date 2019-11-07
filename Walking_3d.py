@@ -84,7 +84,7 @@ elif (action == "swivel"):
 	leg4_offset = 0 		# back right
 
 elif (action == "sideways"):
-	x_center = 0.5
+	x_center = 1
 	x_stride = 0
 
 	y_center = -1
