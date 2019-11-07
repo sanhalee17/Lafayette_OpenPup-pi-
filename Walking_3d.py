@@ -264,7 +264,7 @@ for i in range(0,len(t)):
 		x4[i] = x_center
 		y4[i] = y_center
 		
-		if (t<0.5):
+		if (t[i]<0.5):
 			z1[i] = z_center
 			z2[i] = z_center
 			z3[i] = z_center
