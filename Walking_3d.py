@@ -30,6 +30,7 @@ lspine = 5.00 # spine, inches
 # ACTION CHOICES: forward, turn, swivel, sideways, jump
 
 action = "turn"
+direction = "left"
 
 # -------------------------
 # establish gait parameters
@@ -189,20 +190,28 @@ for i in range(0,len(t)):
 
 	elif (action == "turn"):
 		x1[i] = x_center_front + x_stride*sin(leg_pace*t[i] - pi/2 - leg1_offset)
-		y1[i] = y_center - y_offset*sin(leg_pace*t[i] - pi - leg1_offset)
 		z1[i] = z_center + z_lift*sin(leg_pace*t[i] - pi/2 - leg1_offset)
 
 		x2[i] = x_center_front + x_stride*sin(leg_pace*t[i] - pi/2 - leg2_offset)
-		y2[i] = y_center + y_offset*sin(leg_pace*t[i] - pi - leg2_offset)
 		z2[i] = z_center + z_lift*sin(leg_pace*t[i] - pi/2 - leg2_offset)
 
 		x3[i] = x_center_back + x_stride*sin(leg_pace*t[i] - pi/2 - leg3_offset)
-		y3[i] = y_center + y_offset*sin(leg_pace*t[i] - pi - leg3_offset)
 		z3[i] = z_center + z_lift*sin(leg_pace*t[i] - pi/2 - leg3_offset)
 
 		x4[i] = x_center_back + x_stride*sin(leg_pace*t[i] - pi/2 - leg4_offset)
-		y4[i] = y_center - y_offset*sin(leg_pace*t[i] - pi - leg4_offset)
 		z4[i] = z_center + z_lift*sin(leg_pace*t[i] - pi/2 - leg4_offset)
+
+		if (direction = "left"):
+			y1[i] = y_center - y_offset*sin(leg_pace*t[i] - pi - leg1_offset)
+			y2[i] = y_center + y_offset*sin(leg_pace*t[i] - pi - leg2_offset)
+			y3[i] = y_center + y_offset*sin(leg_pace*t[i] - pi - leg3_offset)
+			y4[i] = y_center - y_offset*sin(leg_pace*t[i] - pi - leg4_offset)
+
+		elif (direction = "right"):
+			y1[i] = y_center + y_offset*sin(leg_pace*t[i] - pi - leg1_offset)
+			y2[i] = y_center - y_offset*sin(leg_pace*t[i] - pi - leg2_offset)
+			y3[i] = y_center - y_offset*sin(leg_pace*t[i] - pi - leg3_offset)
+			y4[i] = y_center + y_offset*sin(leg_pace*t[i] - pi - leg4_offset)
 
 		if (z1[i]) < z_center: z1[i] = z_center
 		if (z2[i]) < z_center: z2[i] = z_center
