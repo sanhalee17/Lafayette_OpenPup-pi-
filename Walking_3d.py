@@ -11,7 +11,7 @@ import time
 import numpy as np
 
 pwm = Adafruit_PCA9685.PCA9685()
-zero = 0
+zero = 1
 
 # -----------------------
 # INVERSE KINEMATICS: 3-D
@@ -420,21 +420,21 @@ while True:
 	if (zero == 1):
 		pwm.set_pwm(0, 0, tib2_offset+760)
 		pwm.set_pwm(1, 0, fem2_offset+760)
-		pwm.set_pwm(2, 0, sh2_offset)
+		#pwm.set_pwm(2, 0, sh2_offset)
 
 		pwm.set_pwm(3, 0, tib1_offset-800)
 		pwm.set_pwm(4, 0, fem1_offset-860)
-		pwm.set_pwm(5, 0, sh1_offset)
+		#pwm.set_pwm(5, 0, sh1_offset)
 
 		time.sleep(0.01)
 
 		pwm.set_pwm(8, 0, fem3_offset-800)
 		pwm.set_pwm(9, 0, tib3_offset-760)
- 		pwm.set_pwm(10, 0, sh3_offset)
+ 		#pwm.set_pwm(10, 0, sh3_offset)
 
 		pwm.set_pwm(12, 0, fem4_offset+760)
 		pwm.set_pwm(7, 0, tib4_offset+760)
-		pwm.set_pwm(13, 0, sh4_offset)
+		#pwm.set_pwm(13, 0, sh4_offset)
 
 
 	# control servos
