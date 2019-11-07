@@ -418,8 +418,8 @@ while True:
 	# check zeros
 
 	if (zero == 1):
-		pwm.set_pwm(0, 0, tib2_offset)#+760)
-		pwm.set_pwm(1, 0, fem2_offset)#+760)
+		pwm.set_pwm(0, 0, tib2_offset+760)
+		pwm.set_pwm(1, 0, fem2_offset+760)
 		#pwm.set_pwm(2, 0, sh2_offset)
 
 		pwm.set_pwm(3, 0, tib1_offset)#-800)
