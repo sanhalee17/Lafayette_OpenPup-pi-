@@ -29,8 +29,8 @@ lspine = 5.00 # spine, inches
 
 # ACTION CHOICES: forward, turn, swivel, sideways, jump
 
-action = "turn"
-direction = "right"
+action = "sideways"
+direction = "left"
 
 # -------------------------
 # establish gait parameters
@@ -63,7 +63,11 @@ elif (action == "turn"):
 	x_stride = 0
 
 	y_center = -1
-	y_offset = 0.5
+
+	if (direction == "left"):
+		y_offset = 0.5
+	elif (direction == "right"):
+		y_offset = -0.5
 
 	z_center = -4
 	z_lift = 1
@@ -80,7 +84,11 @@ elif (action == "swivel"):
 	x_stride = 1
 
 	y_center = -0.5
-	y_offset = 1
+	
+	if (direction == "left"):
+		y_offset = 0.5
+	elif (direction == "right"):
+		y_offset = -0.5
 
 	z_center = -4
 	z_lift = 0
@@ -190,28 +198,20 @@ for i in range(0,len(t)):
 
 	elif (action == "turn"):
 		x1[i] = x_center_front + x_stride*sin(leg_pace*t[i] - pi/2 - leg1_offset)
+		y1[i] = y_center - y_offset*sin(leg_pace*t[i] - pi - leg1_offset)
 		z1[i] = z_center + z_lift*sin(leg_pace*t[i] - pi/2 - leg1_offset)
 
 		x2[i] = x_center_front + x_stride*sin(leg_pace*t[i] - pi/2 - leg2_offset)
+		y2[i] = y_center + y_offset*sin(leg_pace*t[i] - pi - leg2_offset)
 		z2[i] = z_center + z_lift*sin(leg_pace*t[i] - pi/2 - leg2_offset)
 
 		x3[i] = x_center_back + x_stride*sin(leg_pace*t[i] - pi/2 - leg3_offset)
+		y3[i] = y_center + y_offset*sin(leg_pace*t[i] - pi - leg3_offset)
 		z3[i] = z_center + z_lift*sin(leg_pace*t[i] - pi/2 - leg3_offset)
 
 		x4[i] = x_center_back + x_stride*sin(leg_pace*t[i] - pi/2 - leg4_offset)
+		y4[i] = y_center - y_offset*sin(leg_pace*t[i] - pi - leg4_offset)
 		z4[i] = z_center + z_lift*sin(leg_pace*t[i] - pi/2 - leg4_offset)
-
-		if (direction == "left"):
-			y1[i] = y_center - y_offset*sin(leg_pace*t[i] - pi - leg1_offset)
-			y2[i] = y_center + y_offset*sin(leg_pace*t[i] - pi - leg2_offset)
-			y3[i] = y_center + y_offset*sin(leg_pace*t[i] - pi - leg3_offset)
-			y4[i] = y_center - y_offset*sin(leg_pace*t[i] - pi - leg4_offset)
-
-		elif (direction == "right"):
-			y1[i] = y_center + y_offset*sin(leg_pace*t[i] - pi - leg1_offset)
-			y2[i] = y_center - y_offset*sin(leg_pace*t[i] - pi - leg2_offset)
-			y3[i] = y_center - y_offset*sin(leg_pace*t[i] - pi - leg3_offset)
-			y4[i] = y_center + y_offset*sin(leg_pace*t[i] - pi - leg4_offset)
 
 		if (z1[i]) < z_center: z1[i] = z_center
 		if (z2[i]) < z_center: z2[i] = z_center
