@@ -11,7 +11,7 @@ import time
 import numpy as np
 
 pwm = Adafruit_PCA9685.PCA9685()
-zero = 1
+zero = 0
 
 # -----------------------
 # INVERSE KINEMATICS: 3-D
