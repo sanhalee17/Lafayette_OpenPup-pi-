@@ -91,7 +91,7 @@ elif (action == "swivel"):
 elif (action == "sideways"):
 	leg_pace = 150 # pace of gait
 
-	x_center = 0.5
+	x_center = 0
 	x_stride = 0
 
 	y_center = -1
