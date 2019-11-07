@@ -109,14 +109,14 @@ elif (action == "jump"):
 	leg_pace = 100 # pace of gait
 
 	x_center_front = 0
-	x_center_back = -0.5
+	x_center_back = -1
 	x_stride = 0
 
 	y_center = -1
 	y_offset = 0
 
-	z_center = -3
-	z_lift = -2.2
+	z_center = -3.5
+	z_lift = -1.5
 
 	leg1_offset = 0			# front left
 	leg2_offset = 0			# front right
@@ -273,8 +273,8 @@ for i in range(0,len(t)):
 		else:
 			z1[i] = z_center + z_lift
 			z2[i] = z_center + z_lift
-			z3[i] = z_center + z_lift
-			z4[i] = z_center + z_lift
+			z3[i] = z_center
+			z4[i] = z_center
 
 
 # ---------------------------
