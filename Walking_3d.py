@@ -428,8 +428,8 @@ while True:
 
 		time.sleep(0.01)
 
-		pwm.set_pwm(8, 0, fem3_offset-800)
-		pwm.set_pwm(9, 0, tib3_offset-760)
+		pwm.set_pwm(8, 0, fem3_offset)#-800)
+		pwm.set_pwm(9, 0, tib3_offset)#-760)
  		#pwm.set_pwm(10, 0, sh3_offset)
 
 		pwm.set_pwm(12, 0, fem4_offset)#+760)
