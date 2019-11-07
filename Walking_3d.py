@@ -98,7 +98,7 @@ elif (action == "sideways"):
 	y_offset = 0.5
 
 	z_center = -5
-	z_lift = 1
+	z_lift = 1.5
 
 	leg1_offset = 0			# front left
 	leg2_offset = pi		# front right
