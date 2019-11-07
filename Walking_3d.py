@@ -422,8 +422,8 @@ while True:
 		pwm.set_pwm(1, 0, fem2_offset+760)
 		#pwm.set_pwm(2, 0, sh2_offset)
 
-		pwm.set_pwm(3, 0, tib1_offset)#-800)
-		pwm.set_pwm(4, 0, fem1_offset)#-860)
+		pwm.set_pwm(3, 0, tib1_offset-800)
+		pwm.set_pwm(4, 0, fem1_offset-860)
 		#pwm.set_pwm(5, 0, sh1_offset)
 
 		time.sleep(0.01)
