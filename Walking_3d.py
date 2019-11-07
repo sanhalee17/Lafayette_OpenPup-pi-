@@ -11,7 +11,7 @@ import time
 import numpy as np
 
 pwm = Adafruit_PCA9685.PCA9685()
-zero = 1
+zero = 0
 
 # -----------------------
 # INVERSE KINEMATICS: 3-D
@@ -108,7 +108,7 @@ elif (action == "sideways"):
 elif (action == "jump"):
 	leg_pace = 100 # pace of gait
 
-	x_center_front = 0.5
+	x_center_front = 0
 	x_center_back = -0.5
 	x_stride = 0
 
