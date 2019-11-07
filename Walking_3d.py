@@ -115,7 +115,7 @@ elif (action == "jump"):
 	y_offset = 0
 
 	z_center = -3.5
-	z_lift = -2
+	z_lift = -1
 
 	leg1_offset = 0			# front left
 	leg2_offset = 0			# front right
@@ -264,7 +264,7 @@ for i in range(0,len(t)):
 		x4[i] = x_center
 		y4[i] = y_center
 		
-		if (t[i]<0.5):
+		if (i<250):
 			z1[i] = z_center
 			z2[i] = z_center
 			z3[i] = z_center
