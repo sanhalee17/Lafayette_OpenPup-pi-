@@ -11,7 +11,7 @@ import time
 import numpy as np
 
 pwm = Adafruit_PCA9685.PCA9685()
-zero = 0
+zero = 1
 
 # -----------------------
 # INVERSE KINEMATICS: 3-D
@@ -29,7 +29,7 @@ lspine = 5.00 # spine, inches
 
 # ACTION CHOICES: forward, turn, swivel, sideways, jump
 
-action = "jump"
+#action = "jump"
 
 # -------------------------
 # establish gait parameters
