@@ -29,7 +29,7 @@ lspine = 5.00 # spine, inches
 
 # ACTION CHOICES: forward, turn, swivel, sideways, jump
 
-action = "sideways"
+action = "jump"
 
 # -------------------------
 # establish gait parameters
@@ -254,7 +254,7 @@ for i in range(0,len(t)):
 	elif (action == "jump"):
 		x1[i] = x_center
 		y1[i] = y_center
-		
+
 		x2[i] = x_center
 		y2[i] = y_center
 
