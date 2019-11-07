@@ -84,11 +84,6 @@ elif (action == "swivel"):
 	x_stride = 1
 
 	y_center = -0.5
-	
-	if (direction == "left"):
-		y_offset = 0.5
-	elif (direction == "right"):
-		y_offset = -0.5
 
 	z_center = -4
 	z_lift = 0
@@ -105,7 +100,10 @@ elif (action == "sideways"):
 	x_stride = 0
 
 	y_center = -1
-	y_offset = 0.5
+	if (direction == "left"):
+		y_offset = -0.5
+	elif (direction == "right"):
+		y_offset = 0.5
 
 	z_center = -4.75
 	z_lift = 0.75
