@@ -383,7 +383,7 @@ for i in range(0,len(t)):
 	sangt3[i]=(760*angt3[i])/(pi/2)
 	sangs3[i]=(760*angs3[i])/(pi/2)
 
-	sangf4[i]=(760*angf4[i])/(pi/2)
+	sangf4[i]=(800*angf4[i])/(pi/2)
 	sangt4[i]=(760*angt4[i])/(pi/2)
 	sangs4[i]=(760*angs4[i])/(pi/2)
 
@@ -432,7 +432,7 @@ while True:
 		pwm.set_pwm(9, 0, tib3_offset-760)
  		#pwm.set_pwm(10, 0, sh3_offset)
 
-		pwm.set_pwm(12, 0, fem4_offset+760)
+		pwm.set_pwm(12, 0, fem4_offset+800)
 		pwm.set_pwm(7, 0, tib4_offset+760)
 		#pwm.set_pwm(13, 0, sh4_offset)
 
