@@ -55,9 +55,10 @@ if (action == "forward"):
 	leg4_offset = 0 		# back right
 
 elif (action == "turn"):
-	leg_pace = 80 # pace of gait
+	leg_pace = 150 # pace of gait
 
-	x_center = 0
+	x_center_front = 0.5
+	x_center_back = -0.5
 	x_stride = 0
 
 	y_center = -1
@@ -187,19 +188,19 @@ for i in range(0,len(t)):
 		if (z4[i]) < z_center: z4[i] = z_center
 
 	elif (action == "turn"):
-		x1[i] = x_center + x_stride*sin(leg_pace*t[i] - pi/2 - leg1_offset)
+		x1[i] = x_center_front + x_stride*sin(leg_pace*t[i] - pi/2 - leg1_offset)
 		y1[i] = y_center - y_offset*sin(leg_pace*t[i] - pi - leg1_offset)
 		z1[i] = z_center + z_lift*sin(leg_pace*t[i] - pi/2 - leg1_offset)
 
-		x2[i] = x_center + x_stride*sin(leg_pace*t[i] - pi/2 - leg2_offset)
+		x2[i] = x_center_front + x_stride*sin(leg_pace*t[i] - pi/2 - leg2_offset)
 		y2[i] = y_center + y_offset*sin(leg_pace*t[i] - pi - leg2_offset)
 		z2[i] = z_center + z_lift*sin(leg_pace*t[i] - pi/2 - leg2_offset)
 
-		x3[i] = x_center + x_stride*sin(leg_pace*t[i] - pi/2 - leg3_offset)
+		x3[i] = x_center_back + x_stride*sin(leg_pace*t[i] - pi/2 - leg3_offset)
 		y3[i] = y_center + y_offset*sin(leg_pace*t[i] - pi - leg3_offset)
 		z3[i] = z_center + z_lift*sin(leg_pace*t[i] - pi/2 - leg3_offset)
 
-		x4[i] = x_center + x_stride*sin(leg_pace*t[i] - pi/2 - leg4_offset)
+		x4[i] = x_center_back + x_stride*sin(leg_pace*t[i] - pi/2 - leg4_offset)
 		y4[i] = y_center - y_offset*sin(leg_pace*t[i] - pi - leg4_offset)
 		z4[i] = z_center + z_lift*sin(leg_pace*t[i] - pi/2 - leg4_offset)
 
