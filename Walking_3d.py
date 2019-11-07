@@ -269,7 +269,7 @@ for i in range(0,len(t)):
 			z2[i] = z_center
 			z3[i] = z_center
 			z4[i] = z_center
-		elif:
+		else:
 			z1[i] = z_center + z_lift
 			z2[i] = z_center + z_lift
 			z3[i] = z_center + z_lift
