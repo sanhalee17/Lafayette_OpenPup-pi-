@@ -115,7 +115,7 @@ elif (action == "jump"):
 	y_offset = 0
 
 	z_center = -3.5
-	z_lift = 2
+	z_lift = -2
 
 	leg1_offset = 0			# front left
 	leg2_offset = 0			# front right
