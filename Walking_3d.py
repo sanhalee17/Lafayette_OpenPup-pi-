@@ -29,7 +29,7 @@ lspine = 5.00 # spine, inches
 
 # ACTION CHOICES: forward, turn, swivel, sideways, jump
 
-#action = "jump"
+action = "jump"
 
 # -------------------------
 # establish gait parameters
