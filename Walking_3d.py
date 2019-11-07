@@ -108,7 +108,8 @@ elif (action == "sideways"):
 elif (action == "jump"):
 	leg_pace = 100 # pace of gait
 
-	x_center = -0.5
+	x_center_front = 0.5
+	x_center_back = -0.5
 	x_stride = 0
 
 	y_center = -1
@@ -252,16 +253,16 @@ for i in range(0,len(t)):
 		if (z4[i]) < z_center: z4[i] = z_center
 
 	elif (action == "jump"):
-		x1[i] = x_center
+		x1[i] = x_center_front
 		y1[i] = y_center
 
-		x2[i] = x_center
+		x2[i] = x_center_front
 		y2[i] = y_center
 
-		x3[i] = x_center
+		x3[i] = x_center_back
 		y3[i] = y_center
 
-		x4[i] = x_center
+		x4[i] = x_center_back
 		y4[i] = y_center
 		
 		if (i<250):
