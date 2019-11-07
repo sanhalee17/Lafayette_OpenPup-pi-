@@ -36,9 +36,10 @@ action = "sideways"
 # -------------------------
 
 gait_duration = 2 # seconds
-leg_pace = 80 # pace of gait
 
 if (action == "forward"):
+	leg_pace = 80 # pace of gait
+
 	x_center = 0.5
 	x_stride = 1
 
@@ -54,6 +55,8 @@ if (action == "forward"):
 	leg4_offset = 0 		# back right
 
 elif (action == "turn"):
+	leg_pace = 80 # pace of gait
+
 	x_center = 0
 	x_stride = 0
 
@@ -69,6 +72,8 @@ elif (action == "turn"):
 	leg4_offset = 0 		# back right
 
 elif (action == "swivel"):
+	leg_pace = 80 # pace of gait
+
 	x_center = 0.5
 	x_stride = 1
 
@@ -84,6 +89,8 @@ elif (action == "swivel"):
 	leg4_offset = 0 		# back right
 
 elif (action == "sideways"):
+	leg_pace = 150 # pace of gait
+
 	x_center = 1
 	x_stride = 0
 
