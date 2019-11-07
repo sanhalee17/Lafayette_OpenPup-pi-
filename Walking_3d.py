@@ -201,13 +201,13 @@ for i in range(0,len(t)):
 		x4[i] = x_center_back + x_stride*sin(leg_pace*t[i] - pi/2 - leg4_offset)
 		z4[i] = z_center + z_lift*sin(leg_pace*t[i] - pi/2 - leg4_offset)
 
-		if (direction = "left"):
+		if (direction == "left"):
 			y1[i] = y_center - y_offset*sin(leg_pace*t[i] - pi - leg1_offset)
 			y2[i] = y_center + y_offset*sin(leg_pace*t[i] - pi - leg2_offset)
 			y3[i] = y_center + y_offset*sin(leg_pace*t[i] - pi - leg3_offset)
 			y4[i] = y_center - y_offset*sin(leg_pace*t[i] - pi - leg4_offset)
 
-		elif (direction = "right"):
+		elif (direction == "right"):
 			y1[i] = y_center + y_offset*sin(leg_pace*t[i] - pi - leg1_offset)
 			y2[i] = y_center - y_offset*sin(leg_pace*t[i] - pi - leg2_offset)
 			y3[i] = y_center - y_offset*sin(leg_pace*t[i] - pi - leg3_offset)
