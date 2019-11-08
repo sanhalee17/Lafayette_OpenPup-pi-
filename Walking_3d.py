@@ -29,7 +29,7 @@ lspine = 5.00 # spine, inches
 
 # ACTION CHOICES: forward, turn, swivel, sideways, jump
 
-action = "sideways"
+action = "forward"
 direction = "left"
 
 # -------------------------
@@ -45,7 +45,7 @@ if (action == "forward"):
 	x_stride = 1
 
 	y_center = -1
-	y_offset = 0.5
+	y_offset = 0
 
 	z_center = -4
 	z_lift = 1
