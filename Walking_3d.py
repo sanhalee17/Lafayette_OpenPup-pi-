@@ -39,7 +39,7 @@ direction = "left"
 gait_duration = 2 # seconds
 
 if (action == "forward"):
-	leg_pace = 120 # pace of gait
+	leg_pace = 80 # pace of gait
 
 	x_center = 0.5
 	x_stride = 1
