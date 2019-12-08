@@ -47,7 +47,7 @@ if (action == "forward"):
 	y_center = -1
 	y_offset = 0
 
-	z_center = -4.5
+	z_center = -4
 	z_lift = 1
 
 	leg1_offset = 0			# front left
