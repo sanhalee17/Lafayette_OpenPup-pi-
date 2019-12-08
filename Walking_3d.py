@@ -29,7 +29,7 @@ lspine = 5.00 # spine, inches
 
 # ACTION CHOICES: forward, turn, swivel, sideways, jump
 
-action = "turn"
+action = "forward"
 direction = "left"
 
 # -------------------------
@@ -41,13 +41,13 @@ gait_duration = 2 # seconds
 if (action == "forward"):
 	leg_pace = 80 # pace of gait
 
-	x_center = 0.5
+	x_center = -0.2
 	x_stride = 1
 
 	y_center = -1
 	y_offset = 0
 
-	z_center = -4
+	z_center = -4.5
 	z_lift = 1
 
 	leg1_offset = 0			# front left
